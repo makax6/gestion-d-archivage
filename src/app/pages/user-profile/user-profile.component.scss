@@ -1,0 +1,100 @@
+#aa{
+	display: block;
+	width: 100%;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #721c24;
+    background-color: #f8d7da;
+	background-clip: padding-box;
+	border: 1px solid #f5c6cb;
+	border-radius: 50px;
+	margin-top: 13px;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+    
+}
+
+.iziToast-wrapper-topRight{
+    top: 0;
+    right: 0;
+    text-align: right;
+}
+.iziToast-wrapper {
+    z-index: 99999;
+    position: fixed;
+    width: 100%;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+}
+.iziToast-capsule {
+    margin-top: 120px;
+    font-size: 0;
+    height: 0;
+    max-height: 1000px;
+    width: 100%;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: transform .5s cubic-bezier(.25, .8, .25, 1), height .5s cubic-bezier(.25, .8, .25, 1);
+}
+.iziToast.fadeInLeft {
+    -webkit-animation: iziT-fadeInLeft .6s cubic-bezier(.25, .8, .25, 1) both;
+    animation: iziT-fadeInLeft .6s cubic-bezier(.25, .8, .25, 1) both;
+}
+.iziToast.iziToast-danger {
+    border-color: rgba(255, 82, 82, 0.3);
+    background-color: #ffebeb;
+    color: #ff5252;
+}
+.iziToast {
+    display: inline-block;
+    clear: both;
+    position: relative;
+    padding: 8px 50px 9px 0;
+    min-height: 54px;
+    width: 100%;
+    pointer-events: all;
+    cursor: default;
+    transform: translateX(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border: 1px solid #e1e7ec;
+    background: #f5f5f5;
+    user-select: none;
+}
+.iziToast>.iziToast-body {
+    position: relative;
+    padding: 0 0 0 10px;
+    height: 100%;
+    min-height: 36px;
+    margin: 0 0 0 16px;
+}
+.iziToast.iziToast-danger>.iziToast-close {
+    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNv…kzLTAuNzY4LDAtMS4wNjFMOC44ODIsNy44MjF6IiBmaWxsPSIjZWIwMDAwIi8+Cjwvc3ZnPgo=);
+}
+.iziToast>.iziToast-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 0;
+    padding: 0;
+    opacity: .6;
+    width: 42px;
+    height: 100%;
+    cursor: pointer;
+    outline: 0;
+}
+.iziToast>.iziToast-close {
+    width: 40px;
+    transition: opacity .25s;
+    background: none;
+    background-position: center;
+    background-color: transparent;
+    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNv…kzLTAuNzY4LDAtMS4wNjFMOC44ODIsNy44MjF6IiBmaWxsPSIjMzc0MjUwIi8+Cjwvc3ZnPgo=);
+    background-size: 8px;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,117 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <button class="btn btn-icon btn-3 btn btn-info" type="button" (click)="ajouter()">
+          <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+        <span class="btn-inner--text">Ajouter ordre de mission</span>
+       
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        
+        <div class="card-header bg-transparent ">
+            <div class="container">
+                <div class="row">
+                    <div style="margin-top: 13px" class="col-3">
+                        <h3 >Rechercher par Date De :</h3>
+                    </div>
+               
+                  <div class="col-2">
+                  
+                              <input class="form-control datepicker" name="dp" [(ngModel)]="date1"ngbDatepicker #d="ngbDatepicker"  #dp="ngModel" (click)="d.toggle()"   type="text" required autocomplete="off" />
+                         
+                  </div>
+                  <div style="margin-top: 13px" class="col-1">
+                      <h3 >À</h3>
+                  </div>
+                  <div class="col-2">
+                   
+       
+              <input class="form-control datepicker" name="dp1" [(ngModel)]="date2"ngbDatepicker #d1="ngbDatepicker"  #dp1="ngModel" (click)="d1.toggle()"   type="text" required autocomplete="off" />
+    
+                  </div>
+               
+                         
+                        
+                  <div class="col-2">
+                      <button class="btn btn-icon btn-3 btn btn-info" style="margin-bottom: 20px" type="button" (click)="rechercherDate()">
+                          <span class="btn-inner--icon"><i class="fas fa-search"></i></span>
+                        <span class="btn-inner--text">Rechercher</span>
+                       
+                      </button>
+   
+                </div>
+                </div>
+              </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="capture" >
+                <table class="table table-bordered " id="my-table">
+                    <thead>
+                      <tr>
+                        <th >
+                        Date de Sortie
+                        </th >
+                        <th>
+                        Date de Retour
+                        </th>
+                        <th>
+                        Heure de Sortie
+                        </th>
+                        <th>
+                         Heure de Retour 
+                         </th>
+                        <th>
+                         Chargement à la sortie (T)
+                        </th>
+                        <th>
+                         Chargement au retour (T)
+                        </th>
+                       
+           
+                      </tr>
+                    </thead>
+                    <tbody >
+                   
+                          <tr *ngFor="let cl of ordreMissionIn">
+                              <td >{{cl.dateS}}</td>
+                              <td >{{cl.dateR}}</td>
+                              <td >{{cl.heureS}}</td>
+                              <td >{{cl.heureR}}</td>
+                              <td >{{cl.chargementS}}</td>
+                              <td >{{cl.chargementR}}</td>
+                              <td style="display: none" >{{cl.id}}</td>
+                              <td class="text-right">
+                                  <div ngbDropdown placement="bottom-right">
+                                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                                      <i class="fas fa-ellipsis-v"></i>
+                                    </a>
+                                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                      <a style="cursor: pointer" class="dropdown-item"(click)=modifier(cl.id) >Modifier</a>
+                                      <a style="cursor: pointer"class="dropdown-item" (click)=delete(cl.id)>Supprimer</a>
+                                      <a style="cursor: pointer"class="dropdown-item" (click)=view(cl.id)>Consulter</a>
+                                    
+                                  
+                                    </div>
+                                  </div>
+                                </td>
+                            </tr>
+                    </tbody>
+               
+                  </table>
+             </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

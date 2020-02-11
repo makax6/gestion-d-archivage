@@ -1,0 +1,320 @@
+<div id="ignoreElement" class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      
+      <!-- Card stats -->
+      <div class="row">
+          <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body" style="height: 160px">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Clients</h5>
+                      <span class="h2 font-weight-bold mb-0 text-nowrap">{{this.nbCl}}</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                        <i class="fas fa-users"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-4 mb-0 text-muted text-sm">
+                   
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                  <div class="card-body" style="height: 160px">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0 ">Nouveaux clients</h5>
+                        <span class="h2 font-weight-bold mb-0">{{this.newcl}}</span>
+                      </div>
+                      <div class="col-auto">
+                          <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                            <i class="fas fa-users"></i>
+                          </div>
+                        </div>
+                    </div>
+                    <p  class="mt-3 mb-0 text-muted text-sm">
+                      <span  [ngClass]="{'text-danger': etatTextNewCl,  'text-success': !etatTextNewCl}"class="mr-2 text-nowrap"><i [ngClass]="{'fas fa-arrow-down': etatTextNewCl,  'fa fa-arrow-up': !etatTextNewCl}"></i> {{this.momcl}}%</span>
+                      <span class="text-nowrap">Depuis le mois dernier</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body" style="height: 160px">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Montant</h5>
+                  <span class="h2 font-weight-bold mb-0 ">{{this.mt}} DT</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                  
+                    <i class="fas fa-coins"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span [ngClass]="{'text-danger': etatTextNewCl1,  'text-success': !etatTextNewCl1}"class=" mr-2 text-nowrap"><i [ngClass]="{'fas fa-arrow-down': etatTextNewCl1,  'fa fa-arrow-up': !etatTextNewCl1}"></i> {{this.momMt}}%</span>
+                <span class="text-nowrap">Depuis le mois dernier</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      
+      
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body" style="height: 160px">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Quantite</h5>
+                  <span class="h2 font-weight-bold mb-0">{{this.qt}} KG</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                      <i class="fas fa-balance-scale"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                  <span [ngClass]="{'text-danger': etatTextNewCl2,  'text-success': !etatTextNewCl2}"class=" mr-2 text-nowrap"><i [ngClass]="{'fas fa-arrow-down': etatTextNewCl2,  'fa fa-arrow-up': !etatTextNewCl2}"></i> {{this.momQt}} %</span>
+                <span class="text-nowrap">Depuis le mois dernier</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div >
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+        <button class="btn btn-icon btn-3 btn btn-info" style="margin-bottom: 20px"type="button" (click)="ajouter()">
+            <span class="btn-inner--icon"><i class="fas fa-plus-square"></i></span>
+          <span class="btn-inner--text">Ajouter Client</span>
+         
+        </button>
+
+        <button class="btn btn-icon btn-3 btn btn-info" style="margin-bottom: 20px"type="button" (click)="generatePDF()">
+            <span class="btn-inner--icon"><i class="fas fa-caret-square-down"></i></span>
+          <span class="btn-inner--text">Bilan</span>
+         
+        </button>
+         
+      <div class="card shadow"  id="dvContainer" #contentToConvert >
+        <div class="card-header border-0">
+          
+            <div class="container">
+                <div class="row">
+                  <div class="col-3">
+                    
+                 
+                        
+                      <div style="width: 100%;" class="d-inline-block" ngbDropdown #myDrop3="ngbDropdown">
+                        <button class="btn btn-outline-primary mr-2 form-control form-control-alternative "   id="dropdownManual" ngbDropdownAnchor (focus)="myDrop3.open()">{{selectedSortOrder3}}    ▼ </button>
+                        <div style="width: 100%;" ngbDropdownMenu aria-labelledby="dropdownManual">
+                            <button class="dropdown-item"style="text-align: center;"  *ngFor="let sortOrder of sortOrders3" (click)="ChangeSortOrder3(sortOrder)" >{{sortOrder}}</button>
+                          </div>
+               
+              
+  
+                    </div>
+                 
+                  </div>
+               
+                  <div class="col-2">
+                  
+                              <input class="form-control datepicker" name="dp" [(ngModel)]="date1"ngbDatepicker #d="ngbDatepicker"  #dp="ngModel" (click)="d.toggle()"   type="text" required autocomplete="off" />
+                         
+                  </div>
+                  <div style="margin-top: 13px" class="col-1">
+                      <h3 >À</h3>
+                  </div>
+                  <div class="col-2">
+                   
+       
+              <input class="form-control datepicker" name="dp1" [(ngModel)]="date2"ngbDatepicker #d1="ngbDatepicker"  #dp1="ngModel" (click)="d1.toggle()"   type="text" required autocomplete="off" />
+    
+                  </div>
+                  <div *ngIf="this.selectedSortOrder3=='Code Client'" class="col-2">
+                   
+       
+                      <input placeholder="Code Client"  class="form-control " name="dp3" [(ngModel)]="date3"   type="text" required autocomplete="off" />
+            
+                          </div>
+                          <div *ngIf="this.selectedSortOrder3=='Règlement'" class="col-2">
+                   
+       
+                              <input placeholder="Règlement"  class="form-control " name="dp4" [(ngModel)]="date4"   type="text" required autocomplete="off" />
+                    
+                                  </div>
+                        
+                  <div class="col-2">
+                      <button class="btn btn-icon btn-3 btn btn-info" style="margin-bottom: 20px"type="button" (click)="rechercherDate()">
+                          <span class="btn-inner--icon"><i class="fas fa-search"></i></span>
+                        <span class="btn-inner--text">Rechercher</span>
+                       
+                      </button>
+                 
+                </div>
+                </div>
+              </div>
+        
+       
+        </div>
+        <div class="table-responsive">
+            <div id="capture" >
+            <table class="table table-bordered " id="my-table">
+                <thead>
+                  <tr>
+                    <th >
+                     Date
+                    </th >
+                    <th>
+                      BL N°
+                    </th>
+                    <th>
+                     Ech. Fac.
+                    </th>
+                    <th>
+                      M.Reg.
+                     </th>
+                    <th>
+                     Code Client
+                    </th>
+                    <th>
+                     Client
+                    </th>
+                    <th>
+                     Region
+                    </th>
+                  
+                    <th>
+                     Produit
+                    </th>
+                  
+                    <th>
+                        Tot. Reg.
+                       </th>
+                    <th>
+                     Montant (DT)
+                    </th>
+                    <th>
+                      Quantite (KG)
+                    </th>
+                    <th *ngIf="rememberBl">
+                     Fichier Bl.
+                    </th>
+                    <th *ngIf="rememberFac">
+                     Fichier Fac.
+                    </th>
+                   
+                      <div class="text-right" ngbDropdown placement="bottom-right">
+                        <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                          <i class="ni ni-bullet-list-67"></i>
+                        </a>
+                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                       
+                        
+                          <div style="padding-left: 2.2rem" class="custom-control custom-control-alternative custom-checkbox mb-3">
+                              <input class="custom-control-input" id="customCheck6" type="checkbox" checked=""  (change)="toggleFichierFac($event)">
+                              <label class="custom-control-label" for="customCheck6">Fichier Fac</label>
+                            </div>
+                            <div style="padding-left: 2.2rem" class="custom-control custom-checkbox mb-3">
+                                <input class="custom-control-input" id="customCheck2" type="checkbox" checked="" (change)="toggleFichierBl($event)">
+                                <label class="custom-control-label" for="customCheck2">Fichier Bl</label>
+                              </div>
+                        </div>
+                      </div>
+                
+                  </tr>
+                </thead>
+                <tbody >
+               
+                      <tr *ngFor="let cl of clients">
+                          <td >{{cl.dateC}}</td>
+                          <td >{{cl.nBl}}</td>
+                          <td >{{cl.nFac}}</td>
+                          <td >{{cl.modeReg}}</td>
+                          <td >{{cl.codeClient}}</td>
+                     
+                          <td [ngStyle]="{'width':rememberBl==false&&rememberFac==false ? '12%' : '8%'}"> {{cl.client}}</td>
+              
+                          <td [ngStyle]="{'width':rememberBl==false&&rememberFac==false ? '12%' : '8%'}">{{cl.region}}</td>
+                          <td>{{cl.produit}}</td>
+                         
+                          <td [ngClass]="{'text-danger': cl.totReg=='non réglé',  'text-success': cl.totReg=='réglé'}">{{cl.totReg}}</td>
+                          <td>{{cl.montant}}</td>
+                          <td>{{cl.quantite}}</td>
+                          <td *ngIf="rememberBl"><a style="cursor: pointer;"(click)="open(cl.fichierBl)">{{cl.fichierBl}}</a></td>
+                          <td *ngIf="rememberFac"><a style="cursor: pointer;"(click)="open1(cl.fichierFac)">{{cl.fichierFac}}</a></td>
+                          <td class="text-right">
+                              <div ngbDropdown placement="bottom-right">
+                                <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                                  <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                  <a style="cursor: pointer" class="dropdown-item"(click)=modifier(cl.nBl) >Modifier</a>
+                                  <a style="cursor: pointer"class="dropdown-item" (click)=delete(cl.nBl,cl.fichierBl,cl.fichierFac)>Supprimer</a>
+                                
+                                
+                              
+                                </div>
+                              </div>
+                            </td>
+                        </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                      <th style="padding: 20px" colspan="9">Montant et Quantite total </th>
+                    <td>{{this.prix}} DT</td>
+                    <td >{{this.qquantiteTot}} KG</td>
+                  </tr>
+                </tfoot>
+              </table>
+         </div>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="javascript:void(0)">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Dark table -->
+  
+</div>
+</div>

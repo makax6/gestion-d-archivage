@@ -1,0 +1,198 @@
+
+
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+ 
+    <div class="row">
+     
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Bienvenu {{auth.AdminModel.nomAdmin}}</h1>
+        <p class="text-white mt-0 mb-5">Ceci est votre page de profil. Vous pouvez voir l'état d'avancement de votre travail et gérer vos projets ou tâches assignées.</p>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+     
+      <div  class="card card-profile shadow">
+       
+          <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+           
+                  <input
+                  style="display: none"
+                  type="file" (change)="onFileSelected($event)"
+                  #fileInput>
+          
+                  
+                  <img [src]="onFileSelected2()" (click)="fileInput.click()" class="rounded-circle">
+          
+           </div>
+          </div>
+       
+        </div>
+    
+        <div class="card-body pt-0 pt-md-4"style="margin-top: 150px">
+
+          <div class="text-center" >
+
+
+            <h3 style="font-size: 1.3rem;">
+              {{auth.AdminModel.nomAdmin}}  {{auth.AdminModel.prenomAdmin}}<span class="font-weight-light"style="font-size: 1.3rem">, {{auth.AdminModel.ageAdmin}}</span>
+            </h3>
+            <div class="h5 font-weight-300" style="font-size: 1rem">
+              <i class="ni location_pin mr-2"></i>{{auth.AdminModel.adresseAdmin}}
+            </div>
+            <div class="h5 mt-4" style="font-size: 1rem">
+              <i class="ni business_briefcase-24 mr-2"></i>{{auth.AdminModel.posteOccupeAdmin}}
+            </div>
+            <div>
+              <i class="ni education_hat mr-2"></i>{{auth.AdminModel.societeAdmin}}
+            </div>
+            <hr class="my-4" />
+            <p>{{auth.AdminModel.aProposAdmin}}</p>
+            <a href="javascript:void(0)">Show more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Mon Profile</h3>
+            </div>
+           
+          </div>
+        </div>
+        <div class="card-body">
+          <form #form="ngForm" (ngSubmit)="updateAdmin()">
+            <h6 class="heading-small text-muted mb-4">Admin information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Nom</label>
+                    <input type="text" name="nom" [(ngModel)]='auth.AdminModel.nomAdmin'   id="input-username" class="form-control form-control-alternative" autocomplete="off" #nom="ngModel"  required minlength="3" maxlength="15">
+                    <div id="aa" *ngIf="nom.touched && nom.invalid">
+                      <div *ngIf="nom.errors['required']">Nom est requis.</div> 
+                      <div *ngIf="nom.errors['minlength']">Nom devrait comporter au moins 3 caractères.</div>
+                    
+                    </div>
+                  </div>
+               
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Prenom</label>
+                    <input type="text" name="prenom" [(ngModel)]='auth.AdminModel.prenomAdmin' id="input-email" class="form-control form-control-alternative" #prenom="ngModel" autocomplete="off" required minlength="3" maxlength="15">
+                    <div id="aa" *ngIf="prenom.touched && prenom.invalid">
+                      <div *ngIf="prenom.errors['required']">Prénom est requis.</div> 
+                      <div *ngIf="prenom.errors['minlength']">Prénom devrait comporter au moins 3 caractères.</div>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">E-Mail</label>
+                    <input type="text" name="email" [(ngModel)]='auth.AdminModel.emailAdmin'#email="ngModel"   id="input-first-name" class="form-control form-control-alternative"   disabled>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Age</label>
+                    <input type="text" pattern="^[0-9]{0,}$" name="age"  [(ngModel)]='auth.AdminModel.ageAdmin' id="input-last-name" #age="ngModel"  required  class="form-control form-control-alternative" autocomplete="off" number>
+                    <div id="aa" *ngIf="age.touched && age.invalid">
+                      <div *ngIf="age.errors['required']">Age est requis.</div> 
+                      <div *ngIf="age.errors['pattern']">Age non valide.</div>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Poste Occupé</label>
+                    <input type="text" name="poste" [(ngModel)]='auth.AdminModel.posteOccupeAdmin'#poste="ngModel"  id="input-first-name" autocomplete="off" class="form-control form-control-alternative" required minlength="3">
+                    <div id="aa" *ngIf="poste.touched && poste.invalid">
+                      <div *ngIf="poste.errors['required']">Poste Occupé est requis.</div> 
+                      <div *ngIf="poste.errors['minlength']">Poste Occupé devrait comporter au moins 3 caractères.</div>
+                     
+                    </div>
+                  
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Nom de societe</label>
+                    <input type="text" name="societe" [(ngModel)]='auth.AdminModel.societeAdmin'#societe="ngModel" id="input-last-name" class="form-control form-control-alternative"required  autocomplete="off" minlength="3" >
+                    <div id="aa" *ngIf="societe.touched && societe.invalid">
+                      <div *ngIf="societe.errors['required']">Nom de societe  est requis.</div> 
+                      <div *ngIf="societe.errors['minlength']">Nom de societe devrait comporter au moins 3 caractères.</div>
+                     
+                    </div>
+                 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+      
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Adresse</label>
+                    
+                    <input id="input-address" name="address" [(ngModel)]='auth.AdminModel.adresseAdmin'#address="ngModel"class="form-control form-control-alternative"  autocomplete="off" type="text" required>
+                    <div id="aa" *ngIf="address.touched && address.invalid">
+                      <div *ngIf="address.errors['required']">address est requis.</div> 
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+           
+            </div>
+            <hr class="my-4" />
+            <!-- Description -->
+            <h6 class="heading-small text-muted mb-4">A propos de moi</h6>
+            <div class="pl-lg-4">
+              <div class="form-group">
+                <label>A propos de moi</label>
+                <textarea rows="4" name="apropos" [(ngModel)]='auth.AdminModel.aProposAdmin'#apropos="ngModel" class="form-control form-control-alternative" autocomplete="off" required></textarea>
+                <div id="aa" *ngIf="apropos.touched && apropos.invalid">
+                  <div *ngIf="apropos.errors['required']">A propos de moi est requis.</div> 
+                
+                </div>
+              </div>
+              <div class="text-right">
+                <button  class="btn btn-sm btn-primary"  [disabled]="form.invalid" type="submit">Valider</button>
+                
+         
+               
+              </div>
+            
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

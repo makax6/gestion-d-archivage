@@ -1,0 +1,256 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+   
+</div>
+<div class="container-fluid mt--7">
+    <div class="row">
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+      <div class="card-header bg-white border-0">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0">Ajouter ordre de mission</h3>
+          </div>
+         
+        </div>
+      </div>
+      <div class="card-body">
+        <form #form="ngForm">
+          
+            <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                          <label class="form-control-label" >Monsieur</label>
+                         
+                      <input name="mr"  [(ngModel)]='auth.OrdrerModel.monsieur'#mr="ngModel"class="form-control form-control-alternative"  autocomplete="off" type="text" required>
+                      <div id="aa" *ngIf="mr.touched && mr.invalid">
+                        <div *ngIf="mr.errors['required']">Monsieur est requis.</div> 
+                      
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                          <label class="form-control-label" >Designation</label>
+                         
+                      <input name="de"  [(ngModel)]='auth.OrdrerModel.designation'#de="ngModel"class="form-control form-control-alternative"  autocomplete="off" type="text" required>
+                      <div id="aa" *ngIf="de.touched && de.invalid">
+                        <div *ngIf="de.errors['required']">Designation est requis.</div> 
+                
+                      </div>
+                    </div>
+                  </div>
+                    </div>
+               
+             
+              </div>
+              <hr class="my-4" />
+      
+          
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-lg-6">
+                  <div class="form-group">
+                      <label class="form-control-label" for="input-email">Date de Sortie</label>
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        </div>
+                        
+                        <input class="form-control datepicker" name="ds" [(ngModel)]="this.modelDs"ngbDatepicker #d="ngbDatepicker"  #ds="ngModel" (click)="d.toggle()"   type="text" required autocomplete="off" />
+                      
+                      </div>
+                       <div id="aa" *ngIf="ds.touched && ds.invalid">
+                            <div *ngIf="ds.errors['required']">Date de Sortie est requis.</div> 
+                
+                           
+                          </div>
+                    </div>
+       
+             
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="form-control-label" for="input-email">Date de Retour</label>
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                      </div>
+                      
+                      <input class="form-control datepicker" name="dr" [(ngModel)]="this.modelDr"ngbDatepicker #dr1="ngbDatepicker"  #dr="ngModel" (click)="dr1.toggle()"   type="text" required autocomplete="off" />
+                    
+                    </div>
+                     <div id="aa" *ngIf="dr.touched && dr.invalid">
+                          <div *ngIf="dr.errors['required']">Date de Retour est requis.</div> 
+              
+                         
+                        </div>
+                  </div>
+     
+           
+            </div>
+      
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+             
+                    <label class="form-control-label" for="input-email">Heure de Sortie (HH:mm)</label>
+        
+                  
+                    <ngb-timepicker #hs="ngModel" name="hs" [ngModelOptions]="{standalone: true}" [(ngModel)]="timeHs" type="text" required ></ngb-timepicker>
+                    <div id="aa" *ngIf="hs.touched && hs.invalid">
+                      <div *ngIf="hs.errors['required']">Heure de Sortie est requis</div> 
+          
+                     
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+             
+                    <label class="form-control-label" for="input-email">Heure de Retour (HH:mm)</label>
+        
+                  
+                    <ngb-timepicker #hr="ngModel" name="hr" [ngModelOptions]="{standalone: true}" [(ngModel)]="timeHr" type="text" required ></ngb-timepicker>
+                    <div id="aa" *ngIf="hr.touched && hr.invalid">
+                      <div *ngIf="hr.errors['required']">Heure de Retour est requis</div> 
+          
+                     
+                    </div>
+                  </div>
+           
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                          <label class="form-control-label" >Chargement à la sortie (KG)</label>
+                         
+                      <input name="cs"  pattern="^[0-9,.]{0,}$" [(ngModel)]='auth.OrdrerModel.chargementS'#cs="ngModel"class="form-control form-control-alternative"  autocomplete="off" type="text" required>
+                      <div id="aa" *ngIf="cs.touched && cs.invalid">
+                        <div *ngIf="cs.errors['required']">Chargement à la sortie est requis.</div> 
+                        <div *ngIf="cs.errors['pattern']">Chargement à la sortie non valide.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                      <div class="form-group">
+                            <label class="form-control-label" >Chargement au retour (KG)</label>
+                           
+                        <input name="cr"  pattern="^[0-9,.]{0,}$" [(ngModel)]='auth.OrdrerModel.chargementR'#cr="ngModel"class="form-control form-control-alternative"  autocomplete="off" type="text" required>
+                        <div id="aa" *ngIf="cr.touched && cr.invalid">
+                          <div *ngIf="cr.errors['required']">Chargement au retour est requis.</div> 
+                          <div *ngIf="cr.errors['pattern']">Chargement au retour non valide.</div>
+                        </div>
+                      </div>
+                    </div>
+            </div>
+          </div>
+          <hr class="my-4" />
+      
+          
+          <div class="pl-lg-4">
+              <div class="container">
+                  <div class="row justify-content-md-center">
+                      <div class="form-group col-md-auto">
+                          <label class="form-control-label col-md-auto" >Nombre de Clients :</label>
+                    <div class="col-md-auto">
+                     <input name="cl1" [ngModelOptions]="{standalone: true}"[(ngModel)]='this.nbclents'#cl1="ngModel"class="form-control form-control-alternative"  autocomplete="off" type="number" min="1" max="11" required>
+                    </div>
+                  </div>
+                </div>
+                  </div>
+                </div>
+                  <hr class="my-4" />
+                
+
+                  <div *ngFor="let item of Arr(this.nbclents); let i = index" class="pl-lg-4">
+            <div class="row">
+              <div class="col-lg-6">
+                  <div class="form-group">
+                      <label class="form-control-label" >Client</label>
+                     
+                  <input name="cl{{i}}"  [(ngModel)]='clients[i]=clients[i]'#cl="ngModel"class="form-control form-control-alternative"  autocomplete="off" type="text" required>
+                 
+                  <div id="aa" *ngIf="cl.touched && cl.invalid">
+                    <div *ngIf="cl.errors['required']">Client est requis.</div> 
+                  
+                  </div>
+                </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" >Ville</label>
+                       
+                    <input name="vl_{{i}}"  [(ngModel)]='ville[i]'#vl="ngModel"class="form-control form-control-alternative"  autocomplete="off" type="text" required>
+                    <div id="aa" *ngIf="vl.touched && vl.invalid">
+                      <div *ngIf="vl.errors['required']">Ville est requis.</div> 
+                    
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <div class="row">
+        
+          <div class="col-lg-4">
+              <div class="form-group">
+                  <label class="form-control-label" >Commande</label>
+          <div class="custom-control custom-control-alternative custom-checkbox">
+              <input  class="custom-control-input" id=" customCheckLogin{{i}}" [ngModelOptions]="{standalone: true}" [(ngModel)]='commande1[i]=commande1[i]'#cm="ngModel" type="checkbox" [checked]="commande1[i]" >
+             
+             
+              <label class="custom-control-label" for=" customCheckLogin{{i}}">
+                <span class="text-muted">Commande</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label class="form-control-label" >Livraison</label>
+        <div class="custom-control custom-control-alternative custom-checkbox">
+            <input class="custom-control-input" id=" customCheckLogin1{{i}}"[ngModelOptions]="{standalone: true}" [(ngModel)]='livraison1[i]=livraison1[i]'#LVV="ngModel"  type="checkbox" [checked]="livraison1[i]" >
+            <label class="custom-control-label" for=" customCheckLogin1{{i}}">
+              <span class="text-muted">Livraison</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+          <div class="form-group">
+              <label class="form-control-label" >Recouvrement</label>
+      <div class="custom-control custom-control-alternative custom-checkbox">
+          <input class="custom-control-input" id=" customCheckLogin2{{i}}"[ngModelOptions]="{standalone: true}" [(ngModel)]='recouvrement1[i]=recouvrement1[i]'#VRV="ngModel" type="checkbox" [checked]="recouvrement1[i]">
+          <label class="custom-control-label" for=" customCheckLogin2{{i}}">
+            <span class="text-muted">Recouvrement</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="form-control-label" >Observation</label>
+               
+            <textarea rows="4"  name="ob_{{i}}"  [(ngModel)]='observation[i]'#ob="ngModel"class="form-control form-control-alternative"  autocomplete="off" type="text" ></textarea>
+      
+         
+            
+         
+          </div>
+          </div>
+      </div>
+
+          </div>
+        <div class="text-right">
+          <button  class="btn btn-sm btn-primary"  [disabled]="!timeHs||!timeHr||form.invalid"  (click)="ajouterClient()">{{this.valueOfButton}}</button>
+          
+   
+         
+        </div>
+        
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+

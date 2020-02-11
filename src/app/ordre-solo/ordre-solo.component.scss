@@ -1,0 +1,53 @@
+table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+  table td {
+    word-break: break-all;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: bold;
+  }
+  table td
+  {
+    border: 2px solid rgba(0, 0, 0,1);
+    padding-left: 0.5rem;
+    font-weight: bold;
+  }
+  table th
+  {
+    padding-bottom: 2rem;
+    border-left: 2px solid rgb(255, 255, 255);
+    border-right: 2px solid rgb(255, 255, 255);
+    border-top: 2px solid rgb(255, 255, 255);
+    border-bottom:  2px solid rgba(0, 0, 0,1);
+  
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+  table thead th {
+   
+    text-align: center;
+    vertical-align: top;
+    font-weight: bold;
+    
+  }
+  #sign{
+  padding-left: 1.5rem;
+  padding-top: 0;
+  padding-bottom: 4rem;
+  padding-right: 1.5rem;
+  text-align: center;
+
+
+
+
+  }
+  #sg{
+    font-weight: normal;
+  
+  
+  
+  
+    }

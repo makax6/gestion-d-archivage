@@ -1,0 +1,89 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <button class="btn btn-icon btn-3 btn btn-info" type="button" (click)="generatePDF()">
+            <span class="btn-inner--icon"><i class="fas fa-caret-square-down"></i></span>
+          <span class="btn-inner--text">Telecharger Ordre de Mission</span>
+ 
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+      <!-- Table -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+            
+            
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="capture" >
+                    <table class="table table-bordered " id="my-table1">
+                   <thead>
+ <tr>
+   <th colspan="6"> RAPPORT DE VISITE CLIENTS / ORDRE DE MISSION</th>
+ </tr>
+
+                   </thead>
+                        <tbody >
+                       <tr >
+
+                          <td colspan="6" >Monsieur <span id="sg">{{this.auth.OrdrerModel.monsieur}} </span>est autorisé à effectuer la mission suivante : </td>
+                       </tr>
+                       <tr>
+
+                          <td colspan="6">Designations:<span id="sg"> {{this.auth.OrdrerModel.designation}}</span></td>
+                       </tr>
+                       <tr>
+
+                          <td colspan="2" >Date de Sortie: <span id="sg"> {{this.auth.OrdrerModel.dateS}}</span></td>
+                          <td  colspan="2">Heure de Sortie: <span id="sg"> {{this.auth.OrdrerModel.heureS}}</span></td>
+                          <td  colspan="2">Chargement à la Sortie (KG): <span id="sg"> {{this.auth.OrdrerModel.chargementS}} kg</span> </td>
+                       </tr>
+                       <tr>
+
+                          <td colspan="2">Date de Retour: <span id="sg">{{this.auth.OrdrerModel.dateR}}</span></td>
+                          <td colspan="2">Heure de Retour: <span id="sg">{{this.auth.OrdrerModel.heureR}}</span></td>
+                          <td colspan="2">Chargement au Retour (KG): <span id="sg">{{this.auth.OrdrerModel.chargementR}} kg</span> </td>
+                       </tr>
+                
+                        <tr>
+                         <td style="font-weight: bold;"> Client   </td >  
+                          <td style="font-weight: bold;"> Ville   </td > 
+                          <td style="font-weight: bold;"> Commande   </td > 
+                          <td style="font-weight: bold;"> Livraison   </td > 
+                           <td style="font-weight: bold;"> Recouvrement   </td > 
+                           <td style="font-weight: bold;"> Observations   </td > 
+                      </tr>
+                
+                      
+                      <tr *ngFor="let cl of tTOrdre">
+                                  <td >{{cl.client}}</td>
+                                  <td >{{cl.ville}}</td>
+                                  <td >{{cl.commande}}</td>
+                                  <td >{{cl.livraison}}</td>
+                                  <td >{{cl.recouvrement}}</td>
+                                  <td >{{cl.observation}}</td>
+    
+                                </tr>
+                                
+                             
+                                <tr>
+                                    <td id="sign" style="padding-top: 0;"colspan="3" > Directeur Commercial   </td >  
+                                     <td id="sign" colspan="3"> Vendeur/Livreur   </td > 
+                          </tr>
+                        </tbody>
+                       
+                           
+                           
+                        
+                      </table>
+                 </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

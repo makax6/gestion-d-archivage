@@ -1,0 +1,83 @@
+<div class="header bg-gradient-danger py-7 py-lg-8">
+  <div class="container">
+    <div class="header-body text-center mb-7">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+       
+
+          <h2 class="text-white">SOCIETE DE PRODUCTION DES PRODUITS ALIMENTAIRES DU SUD</h2>
+         
+          <h2 class="text-lead text-light">شركة إنتاج المواد الغذائية للجنوب</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary shadow border-0">
+     
+        <div class="card-body px-lg-5 py-lg-5">
+          <div class="text-center text-muted mb-4">
+            <strong>Se connecter</strong>
+          </div>
+          <form role="form" #form1="ngForm"  (ngSubmit)="loginUser()">
+            <div class="form-group mb-3">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input  name="emailLg" class="form-control"  placeholder="E-mail" type="text" (ngModelChange)="dataChanged()" [(ngModel)]='auth.AdminModel.emailAdmin' #emailLg="ngModel" required email maxlength="30">
+              </div>
+              <div id="aa1" *ngIf="emailLg.touched && emailLg.invalid">
+                  <div *ngIf="emailLg.errors['required']">E-mail est requis.</div> 
+                  <div *ngIf="emailLg.errors['email']">E-mail non valide.</div>  
+                </div>
+            </div>
+            <div id="aa1"*ngIf=messageEmail>E-mail et/ou mot de passe incorrects.</div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input [type]="show ? 'text' : 'password'" class="form-control" placeholder="Mot de passe"  name="MotDePasseLg" (ngModelChange)="dataChanged()" [(ngModel)]='auth.AdminModel.mdpAdmin' #MotDePasseLg="ngModel" required minlength="6" maxlength="20" >
+                <div   style="cursor: pointer;" class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni fas"  (click)="hideAndShow() " [ngClass]="{'fa-eye': show,'fa-eye-slash': hide}"></i></span>
+                </div>
+              </div>
+            </div>
+            <div id="aa1" *ngIf="MotDePasseLg.touched && MotDePasseLg.invalid && !messageMdp">
+                <div *ngIf="MotDePasseLg.errors['required'] ">Mot de passe est requis.</div> 
+                <div *ngIf="MotDePasseLg.errors['minlength']">Les mots de passe doivent au moins avoir 6 caractères.</div> 
+              </div>
+              <div id="aa1"*ngIf=messageMdp>E-mail et/ou mot de passe incorrects.</div>
+            <div class="custom-control custom-control-alternative custom-checkbox">
+              <input class="custom-control-input" id=" customCheckLogin" type="checkbox" [checked]="remembervAL" (change)="toggleEditable($event)">
+              <label class="custom-control-label" for=" customCheckLogin">
+                <span class="text-muted">se souvenir de moi</span>
+              </label>
+            </div>
+            <div class="text-center">
+              <button type="button" [disabled]="form1.invalid" type="submit" class="btn btn-primary my-4">Se connecter</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-6">
+          <a href="javascript:void(0)" class="text-light"><small>Mot de passe oublié?</small></a>
+        </div>
+        <div class="col-6 text-right">
+          <a href="javascript:void(0)" class="text-light"><small>Créer votre compte FRIGA</small></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

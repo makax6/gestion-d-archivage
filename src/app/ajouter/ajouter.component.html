@@ -1,0 +1,245 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+   
+  </div>
+  <div class="container-fluid mt--7">
+      <div class="row">
+<div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Ajouter client</h3>
+            </div>
+           
+          </div>
+        </div>
+        <div class="card-body">
+          <form #form="ngForm">
+              <h6 class="heading-small text-muted mb-4">Bon de livraison information</h6>
+              <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                            <label class="form-control-label" >BL N°</label>
+                           
+                        <input name="bl1" pattern="^[0-9]{0,}$"  [(ngModel)]='auth.ClientModel.nBl'#bl1="ngModel"class="form-control form-control-alternative"  autocomplete="off" type="text" required>
+                        <div id="aa" *ngIf="bl1.touched && bl1.invalid">
+                          <div *ngIf="bl1.errors['required']">BL N° est requis.</div> 
+                          <div *ngIf="bl1.errors['pattern']">BL N° non valide.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                              <label class="form-control-label" for="input-address">Fichier BL</label>
+                              <input
+                          style="display: none"
+                              type="file" (change)="onFileSelected($event)"
+                         #fileInput>
+                         <button  class="btn btn-sm btn-primary form-control form-control-alternative" (click)="fileInput.click()"  >choisir un fichier</button>
+                         
+                          <div  style="margin-top: 13px;" *ngIf=this.ok>{{this.ok}}</div>
+                          <div id="aa" *ngIf="!validationbl"> Fichier BL est requis.</div>
+                            
+                          
+                          </div>
+                        </div>
+                      </div>
+                 
+               
+                </div>
+                <hr class="my-4" />
+        
+            <h6 class="heading-small text-muted mb-4">Client Information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-email">Date</label>
+                        <div class="input-group input-group-alternative">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                          </div>
+                          
+                          <input class="form-control datepicker" name="dp" [(ngModel)]="this.model"ngbDatepicker #d="ngbDatepicker"  #dp="ngModel" (click)="d.toggle()"   type="text" required autocomplete="off" />
+                        
+                        </div>
+                         <div id="aa" *ngIf="dp.touched && dp.invalid">
+                              <div *ngIf="dp.errors['required']">Date est requis.</div> 
+                  
+                             
+                            </div>
+                      </div>
+         
+               
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" >Code Client</label>
+                        <input type="text" pattern="^[0-9]{0,}$" name="age"  [(ngModel)]='auth.ClientModel.codeClient'(ngModelChange)="ClientDispo($event)" #age="ngModel"  required  class="form-control form-control-alternative" autocomplete="off" number>
+                        <div id="aa" *ngIf="age.touched && age.invalid">
+                          <div *ngIf="age.errors['required']">Code Client est requis.</div> 
+                          <div *ngIf="age.errors['pattern']">Code Client non valide.</div>
+                         
+                        </div>
+                      </div>
+                </div>
+        
+              </div>
+              <div class="row">
+                  <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Nom Client</label>
+                        <input type="text" name="client" [(ngModel)]='auth.ClientModel.clientName' class="form-control form-control-alternative" #client="ngModel" autocomplete="off" required >
+                        <div id="aa" *ngIf="client.touched && client.invalid">
+                          <div *ngIf="client.errors['required']">Nom Client est requis.</div> 
+                         
+                         
+                        </div>
+                      </div>
+                    </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Région</label>
+                    <input type="text"  name="region"  [(ngModel)]='auth.ClientModel.region' id="input-last-name" #region="ngModel"  required  class="form-control form-control-alternative" autocomplete="off" >
+                    <div id="aa" *ngIf="region.touched && region.invalid">
+                      <div *ngIf="region.errors['required']">region est requis.</div> 
+                    
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Mode de paiement</h6>
+      
+            <div class="pl-lg-4">
+              <div class="row">
+                  <div class="col-lg-6">
+                      <div class="form-group">
+                 
+                        <label  class="form-control-label">Mode de règlement</label>
+                    <div style="width: 100%;" class="d-inline-block" ngbDropdown #myDrop2="ngbDropdown">
+                      <button class="btn btn-outline-primary mr-2 form-control form-control-alternative"   id="dropdownManual" ngbDropdownAnchor (focus)="myDrop2.open()">{{selectedSortOrder2}}    ▼ </button>
+                      <div style="width: 100%;" ngbDropdownMenu aria-labelledby="dropdownManual">
+                          <button class="dropdown-item"style="text-align: center;"  *ngFor="let sortOrder2 of sortOrders2" (click)="ChangeSortOrder2(sortOrder2)" >{{sortOrder2}}</button>
+                        </div>
+             
+                </div>
+                <div id="aa" *ngIf="!etatProduit2">Mode de règlement est requis</div> 
+                  </div>
+                </div>
+           
+              </div>
+           
+            </div>
+            <hr class="my-4" />
+      
+            <h6 class="heading-small text-muted mb-4">Produit information</h6>
+            <div class="pl-lg-4">
+            <div class="row">
+      
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label  class="form-control-label">Type produit</label>
+                  
+                  <div style="width: 100%;" class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+                    <button class="btn btn-outline-primary mr-2  form-control form-control-alternative"   id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">{{selectedSortOrder}}   ▼ </button>
+                    <div style="width: 100%;" ngbDropdownMenu aria-labelledby="dropdownManual">
+                        <button class="dropdown-item"style="text-align: center;"  *ngFor="let sortOrder of sortOrders" (click)="ChangeSortOrder(sortOrder)" >{{sortOrder}}</button>
+                      </div>
+           
+              </div>
+              <div id="aa" *ngIf="!etatProduit">Type de Produit est requis</div> 
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                <label  class="form-control-label">Quantité (KG)</label>
+                <input name="qt" type="text" pattern="^[0-9]{0,}$"   [(ngModel)]='auth.ClientModel.quantite'#qt="ngModel" class="form-control form-control-alternative" autocomplete="off" type="text" required>
+                <div id="aa" *ngIf="qt.touched && qt.invalid">
+                  <div *ngIf="qt.errors['required']">Quantité est requis.</div> 
+                  <div *ngIf="qt.errors['pattern']">Quantité non valide.</div>
+                </div>
+              </div>
+              </div>
+            
+            </div>
+          </div>
+          <div class="pl-lg-4">
+              <div class="row">
+        
+                  <div class="col-lg-6">
+                      <div class="form-group">
+                 
+                        <label  class="form-control-label">Totale Règlement</label>
+                    <div style="width: 100%;" class="d-inline-block" ngbDropdown #myDrop1="ngbDropdown">
+                      <button class="btn btn-outline-primary mr-2 form-control form-control-alternative"   id="dropdownManual" ngbDropdownAnchor (focus)="myDrop1.open()">{{selectedSortOrder1}}    ▼ </button>
+                      <div style="width: 100%;" ngbDropdownMenu aria-labelledby="dropdownManual">
+                          <button class="dropdown-item"style="text-align: center;"  *ngFor="let sortOrder1 of sortOrders1" (click)="ChangeSortOrder1(sortOrder1)" >{{sortOrder1}}</button>
+                        </div>
+             
+                </div>
+                <div id="aa" *ngIf="!etatProduit1">Totale Règlement est requis</div> 
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                  <label  class="form-control-label">Montant</label>
+                  <input name="mt" type="text" pattern="^[0-9,.]{0,}$"  [(ngModel)]='auth.ClientModel.montant'#mt="ngModel" class="form-control form-control-alternative"  autocomplete="off" type="text" required>
+                  <div id="aa" *ngIf="mt.touched && mt.invalid">
+                    <div *ngIf="mt.errors['required']">Montant est requis.</div> 
+                    <div *ngIf="mt.errors['pattern']">Montant non valide.</div>
+                  </div>
+                </div>
+                </div>
+              
+              </div>
+            </div>
+            <hr class="my-4" />
+            <h6 class="heading-small text-muted mb-4">facture information</h6>
+            <div class="pl-lg-4">
+                <div class="row">
+              
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                          <label class="form-control-label" for="input-address">Facture N°</label>
+                      
+                      <input name="fn"  [(ngModel)]='auth.ClientModel.nFac'#fn="ngModel"class="form-control form-control-alternative"  autocomplete="off" type="text" required>
+                      <div id="aa" *ngIf="fn.touched && fn.invalid">
+                        <div *ngIf="fn.errors['required']">Facture N° est requis.</div> 
+                      
+                      </div>
+                      <div id="aa" *ngIf="auth.ClientModel.nFac=='FAC-'">Facture N° est requis.</div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                      <div class="form-group">
+                            <label class="form-control-label" for="input-address">Fichier Facture</label>
+                            <input
+                            style="display: none"
+                                type="file" (change)="onFileSelected1($event)"
+                           #fileInput2>
+                           <button  class="btn btn-sm btn-primary form-control form-control-alternative" (click)="fileInput2.click()"  >choisir un fichier</button>
+                        <div  style="margin-top: 13px;" *ngIf=this.ok2>{{this.ok2}}</div>
+                        <div id="aa" *ngIf="!validationbl1"> Fichier Facture est requis.</div>
+                      </div>
+                    </div>
+                </div>
+             
+              </div>
+          <div class="text-right">
+            <button  class="btn btn-sm btn-primary"   [disabled]="!validationbl1||!validationbl||form.invalid||auth.ClientModel.nFac=='FAC-'||!etatProduit1||!etatProduit||!etatProduit2"  (click)="ajouterClient()">{{this.valueOfButton}}</button>
+            
+     
+           
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

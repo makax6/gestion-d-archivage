@@ -1,0 +1,169 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+          <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body" style="height: 160px">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Clients</h5>
+                      <span class="h2 font-weight-bold mb-0 text-nowrap">{{this.nbCl}}</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                        <i class="fas fa-users"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-4 mb-0 text-muted text-sm">
+                   
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+                <div class="card card-stats mb-4 mb-xl-0">
+                  <div class="card-body" style="height: 160px">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0 ">Nouveaux clients</h5>
+                        <span class="h2 font-weight-bold mb-0">{{this.newcl}}</span>
+                      </div>
+                      <div class="col-auto">
+                          <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                            <i class="fas fa-users"></i>
+                          </div>
+                        </div>
+                    </div>
+                    <p  class="mt-3 mb-0 text-muted text-sm">
+                      <span  [ngClass]="{'text-danger': etatTextNewCl,  'text-success': !etatTextNewCl}"class="mr-2 text-nowrap"><i [ngClass]="{'fas fa-arrow-down': etatTextNewCl,  'fa fa-arrow-up': !etatTextNewCl}"></i> {{this.momcl}}%</span>
+                      <span class="text-nowrap">Depuis le mois dernier</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body" style="height: 160px">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Montant</h5>
+                  <span class="h2 font-weight-bold mb-0 ">{{this.mt}} DT</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                  
+                    <i class="fas fa-coins"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span [ngClass]="{'text-danger': etatTextNewCl1,  'text-success': !etatTextNewCl1}"class=" mr-2 text-nowrap"><i [ngClass]="{'fas fa-arrow-down': etatTextNewCl1,  'fa fa-arrow-up': !etatTextNewCl1}"></i> {{this.momMt}}%</span>
+                <span class="text-nowrap">Depuis le mois dernier</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      
+      
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body" style="height: 160px">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Quantite</h5>
+                  <span class="h2 font-weight-bold mb-0">{{this.qt}} KG</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                      <i class="fas fa-balance-scale"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                  <span [ngClass]="{'text-danger': etatTextNewCl2,  'text-success': !etatTextNewCl2}"class=" mr-2 text-nowrap"><i [ngClass]="{'fas fa-arrow-down': etatTextNewCl2,  'fa fa-arrow-up': !etatTextNewCl2}"></i> {{this.momQt}} %</span>
+                <span class="text-nowrap">Depuis le mois dernier</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card bg-gradient-default shadow">
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">
+              
+              <h2 class="text-white mb-0">Montant Total(DT)</h2>
+            </div>
+            <div class="col">
+              <ul class="nav nav-pills justify-content-end">
+                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="getMonth()">
+                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked==true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
+                    <span class="d-none d-md-block">Mois</span>
+                    <span class="d-md-none">M</span>
+                  </a>
+                </li>
+                <li class="nav-item" data-toggle="chart1" data-target="#chart-sales"  (click)="getYear()">
+                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1==true}" data-toggle="tab1" (click)="clicked=false;clicked1=true">
+                    <span class="d-none d-md-block">Année</span>
+                    <span class="d-md-none">A</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- Chart -->
+          <div class="chart">
+            <!-- Chart wrapper -->
+            <canvas id="chart-sales" class="chart-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  <div class="row" style="margin-top: 40px">
+      <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">
+             
+              <h2 class="mb-0">Quantite Total(KG)</h2>
+            </div>
+            <ul class="nav nav-pills justify-content-end">
+                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="getMonth()">
+                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked==true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
+                    <span class="d-none d-md-block">Mois</span>
+                    <span class="d-md-none">M</span>
+                  </a>
+                </li>
+                <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="getYear()">
+                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1==true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
+                    <span class="d-none d-md-block">Année</span>
+                    <span class="d-md-none">A</span>
+                  </a>
+                </li>
+              </ul>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- Chart -->
+          <div class="chart">
+            <canvas id="chart-orders" class="chart-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
